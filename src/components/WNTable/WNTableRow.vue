@@ -1,7 +1,7 @@
 <template>
     <tr class="row" v-if="!header">
         <div class="row__header">
-            <p v-for="(column, index) in columns" :key="index">{{ column }}</p>
+            <p v-for="(column, index) in columns" :key="index">{{ column.name }}</p>
         </div>
 
         <component :is="element" class="col" v-for="(item, index) in content" :key="index">
@@ -85,6 +85,11 @@ $color-lightgray: #f2f2f2;
         color: white;
         text-align: center;
         grid-area: header;
+
+        & > * {
+            padding: 8px 6px;
+            margin: 0;
+        }
 
         @media (min-width: 768px) {
             display: none;
