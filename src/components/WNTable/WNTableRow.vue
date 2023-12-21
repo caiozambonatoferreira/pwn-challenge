@@ -1,5 +1,5 @@
 <template>
-    <tr class="row" v-if="(typeof content === 'object')">
+    <tr class="row" v-if="!header">
         <div class="row__header">
             <p v-for="(column, index) in columns" :key="index">{{ column }}</p>
         </div>
@@ -11,11 +11,19 @@
         <td class="col" v-if="editable">
             <wn-input label="Qty" :action="false" :value="content[editable]" inputType="number" size="small" />
         </td>
-
-
     </tr>
-    <component :is="element" class="col" v-else>
-        {{ content }}
+    <component v-else :is="element" class="col">
+        {{ content.name }}
+
+        <button
+            v-if="content.sort"
+            class="row__sort"
+            @click="$emit('sort', content.sort)"
+        >
+            <font-awesome-icon
+                icon="sort"
+            />
+        </button>
     </component>
 </template>
 
@@ -81,6 +89,15 @@ $color-lightgray: #f2f2f2;
         @media (min-width: 768px) {
             display: none;
         }
+    }
+
+    &__sort {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        vertical-align: text-top;
+        display: inline-flex;
+        align-items: center;
     }
 }
 

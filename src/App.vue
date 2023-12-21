@@ -21,7 +21,15 @@ export default {
 
     data() {
         return {
-            labels: ['Item code', 'Product', 'Package', 'Available units', 'Category', 'Last updated', 'Edit available quantity'],
+            labels: [
+                { name: 'Item code' },
+                { name: 'Product', sort: 'name' },
+                { name: 'Package' },
+                { name: 'Available units', sort: 'available' },
+                { name: 'Category' },
+                { name: 'Last updated', sort: 'last_updated' },
+                { name: 'Edit available quantity' }
+            ],
             products: [
                 {
                     code: 'ACC1',
