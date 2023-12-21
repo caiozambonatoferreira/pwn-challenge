@@ -5,7 +5,8 @@
         </div>
 
         <component :is="element" class="col" v-for="(item, index) in content" :key="index">
-            {{ item }}
+            <span v-if="(typeof item === 'number')">{{ item | formatNumber }}</span>
+            <span v-else>{{ item }}</span>
         </component>
 
         <td class="col" v-if="editable">
@@ -56,6 +57,19 @@ export default {
     computed: {
         element() {
             return this.header ? 'th' : 'td'
+        }
+    },
+    filters: {
+        formatNumber(number) {
+            let numStr = number.toString();
+            let dotIndex = numStr.length - 3;
+            numStr = numStr.substring(0, dotIndex) + '.' + numStr.substring(dotIndex);
+
+            for (let i = dotIndex - 3; i > 0; i -= 3) {
+                numStr = numStr.substring(0, i) + ',' + numStr.substring(i);
+            }
+
+            return numStr;
         }
     }
 }
