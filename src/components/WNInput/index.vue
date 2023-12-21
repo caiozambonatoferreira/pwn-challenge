@@ -1,7 +1,10 @@
 <template>
-    <label>
+    <label class="input__wrapper" :class="{ 'input__wrapper--small': size === 'small' }">
+        <span v-if="label" class="input__label">{{ label }}</span>
         <input
             class="input"
+            :class="{ 'input--labeled': label && label.length }"
+            :value="value"
             :type="inputType"
             :placeholder="placeholder"
             @input="onInput"
@@ -31,6 +34,18 @@ export default {
         action: {
             type: Boolean,
             default: true
+        },
+        label: {
+            type: String,
+            required: false
+        },
+        value: {
+            type: [String, Number],
+            required: false
+        },
+        size: {
+            type: String,
+            required: false
         }
     },
 
@@ -42,10 +57,10 @@ export default {
 
     methods: {
         onInput(event) {
-            const value = event.target.value;
+            const value = event.target.value
 
             if (!value) {
-                this.error = 'Value should not be empty';
+                this.error = 'Value should not be empty'
             }
 
             this.$emit('input', event.target.value)
@@ -69,6 +84,26 @@ export default {
         @extend %input;
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px;
+        width: 100%;
+
+        &--labeled {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        &__wrapper {
+            display: flex;
+            align-items: center;
+
+            &--small {
+                .input {
+                    font-size: 10px;
+                    line-height: 12px;
+                }
+            }
+        }
 
         &__action {
             @extend %input;
@@ -81,6 +116,16 @@ export default {
             svg {
                 vertical-align: middle;
             }
+        }
+
+        &__label {
+            @extend %input;
+            background: $color-lightgray;
+            font-size: 14px;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            line-height: 12px;
+            font-size: 10px;
         }
     }
 </style>

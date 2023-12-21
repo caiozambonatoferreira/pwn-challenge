@@ -3,7 +3,8 @@
     <h2 class="subtitle">Inventory</h2>
 
     <wn-table
-        :columns="products"
+        :cols="labels"
+        :rows="products"
     />
   </div>
 </template>
@@ -20,6 +21,7 @@ export default {
 
     data() {
         return {
+            labels: ['Item code', 'Product', 'Package', 'Available units', 'Category', 'Last updated', 'Edit available quantity'],
             products: [
                 {
                     code: 'ACC1',
@@ -48,6 +50,7 @@ $color-dark: #333333;
 
 * {
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 
 .container {
