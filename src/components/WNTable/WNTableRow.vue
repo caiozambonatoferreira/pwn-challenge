@@ -1,18 +1,18 @@
 <template>
     <tr class="row" v-if="(typeof content === 'object')">
+        <div class="row__header">
+            <p v-for="(column, index) in columns" :key="index">{{ column }}</p>
+        </div>
+
         <component :is="element" class="col" v-for="(item, index) in content" :key="index">
             {{ item }}
         </component>
 
         <td class="col" v-if="editable">
-            <wn-input
-                label="Qty"
-                :action="false"
-                :value="content[editable]"
-                inputType="number"
-                size="small"
-            />
+            <wn-input label="Qty" :action="false" :value="content[editable]" inputType="number" size="small" />
         </td>
+
+
     </tr>
     <component :is="element" class="col" v-else>
         {{ content }}
@@ -36,6 +36,10 @@ export default {
         header: {
             type: Boolean,
             default: false
+        },
+        columns: {
+            type: Array,
+            required: false
         }
     },
     components: {
@@ -50,8 +54,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .col {
-        padding: 8px 0;
-        text-align: center;
+$color-darkgray: #4d4d4d;
+$color-lightgray: #f2f2f2;
+.row {
+    display: grid;
+    border-bottom: 1px solid $color-lightgray;
+    grid-template:  "header col"
+                    "header col"
+                    "header col"
+                    "header col"
+                    "header col"
+                    "header col"
+                    "header col";
+
+    @media (min-width: 768px) {
+        display: revert;
     }
+
+    &__header {
+        background: $color-darkgray;
+        padding: 4px;
+        color: white;
+        text-align: center;
+        grid-area: header;
+
+        @media (min-width: 768px) {
+            display: none;
+        }
+    }
+}
+
+.col {
+    padding: 8px 6px;
+    text-align: center;
+    display: block;
+
+    @media (min-width: 768px) {
+        display: revert;
+    }
+}
 </style>

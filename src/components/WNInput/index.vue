@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    $color-gray: #bfbfbf;
+    $color-gray: #dadada;
     $color-lightgray: #f2f2f2;
 
     %input {

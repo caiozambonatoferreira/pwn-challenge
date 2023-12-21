@@ -32,11 +32,27 @@ export default {
                     last_updated: '2021-02-05 08:28:36'
                 },
                 {
-                    code: 'ACC1',
+                    code: 'ACC2',
                     name: 'Pineapple crownless',
                     package: '7 CT',
                     available: 6462020,
                     category: 'Fruits',
+                    last_updated: '2021-02-03 19:49:33'
+                },
+                {
+                    code: 'ACC3',
+                    name: 'Banana Green',
+                    package: '8 CT',
+                    available: 8664948,
+                    category: 'Fruits',
+                    last_updated: '2021-02-05 08:28:36'
+                },
+                {
+                    code: 'ACC4',
+                    name: 'White Rice',
+                    package: '21 CT',
+                    available: 2592335,
+                    category: 'Grains',
                     last_updated: '2021-02-03 19:49:33'
                 },
             ]

@@ -3,7 +3,7 @@
         <div class="table__filter">
             <wn-input
                 placeholder="Product search"
-                v-model="model"
+                v-model="filter"
             />
         </div>
 
@@ -18,10 +18,11 @@
             </thead>
             <tbody class="table__body">
                 <wn-table-row
-                    v-for="(row, index) in rows"
+                    v-for="(row, index) in filteredList"
                     :key="index"
                     :content="row"
                     editable="available"
+                    :columns="cols"
                 ></wn-table-row>
             </tbody>
         </table>
@@ -48,13 +49,29 @@ export default {
 
     data() {
         return {
-            model: ''
+            filter: ''
         }
     },
 
     components: {
         'wn-input': WNInput,
         'wn-table-row': WNTableRow
+    },
+
+    computed: {
+        filteredList() {
+            if (!this.filter) {
+                return this.rows
+            }
+
+            const search = this.filter.toLocaleLowerCase()
+
+            return this.rows.filter(row => {
+                return row.code.toLowerCase().includes(search) ||
+                    row.name.toLowerCase().includes(search) ||
+                    row.category.toLowerCase().includes(search);
+            })
+        }
     }
 }
 </script>
@@ -69,6 +86,11 @@ export default {
 
         &__head {
             background: $color-lightgray;
+            display: none;
+
+            @media (min-width: 768px) {
+                display: revert;
+            }
         }
 
         &__filter {
