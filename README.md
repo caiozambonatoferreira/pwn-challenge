@@ -1,6 +1,6 @@
 # Project Waste Not Challenge
 
-# (Live version on this URL)[https://pwn-challenge.netlify.app/]
+# [Live version on this URL](https://pwn-challenge.netlify.app/)
 
 ## Project setup
 ```
