@@ -1,5 +1,7 @@
 # Project Waste Not Challenge
 
+# [Live version on this URL](https://pwn-challenge.netlify.app/)
+
 ## Project setup
 ```
 Run:
@@ -16,6 +18,3 @@ yarn serve
 ```
 yarn build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
